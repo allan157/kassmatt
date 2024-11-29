@@ -1,6 +1,12 @@
 from django.shortcuts import render
+from .models import Product
 
-# Create your views here.
-
-def Store(request):
-    return render(request, 'store/store.html') 
+def store(request):
+    products = Product.objects.all().filter(is_available=True)
+    product_count = products.count()
+    
+    context = {
+        'products' : products,
+        'product_count': product_count,  # Added product count to the context for display in the template.  # Added product count to the context for display in the template.  # Added product count to the context for display in the template.  # Added product count to the context for display in the template.  # Added product count to the context for display in the template.  # Added product count to the context for display in the template.  # Added product count to
+    }
+    return render(request, 'store/store.html', context) 
